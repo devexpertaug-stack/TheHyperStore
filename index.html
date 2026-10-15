@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hyper Store — Streetwear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Announcement bar -->
+  <div class="announce">
+    <button class="announce-arrow" aria-label="Previous">‹</button>
+    <span>FREE WORLDWIDE SHIPPING ON ORDERS OVER $150</span>
+    <button class="announce-arrow" aria-label="Next">›</button>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav class="nav-left">
+      <a href="#">NEW ARRIVALS</a>
+      <a href="#">TOPS</a>
+      <a href="#">BOTTOMS</a>
+      <a href="#">UNISEX</a>
+      <a href="#">ACCESSORIES</a>
+      <a href="#" class="nav-sale">CLEARANCE SALE</a>
+    </nav>
+
+    <a href="index.html" class="logo">GITHESHE</a>
+
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="m21 20-5.6-5.6a7 7 0 1 0-1.4 1.4L20 21l1-1ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 4h-2L3 6v2h2l3.6 7.6-1.3 2.4c-.2.3-.3.7-.3 1 0 1.1.9 2 2 2h12v-2H9.4c-.1 0-.2-.1-.2-.2l1-1.8h7.5c.7 0 1.4-.4 1.7-1l3.6-6.6-1.7-.9-3.6 6.5H10L6.2 6H21V4H7Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero video -->
+  <section class="hero">
+    <!--
+      Replace this placeholder with your own video:
+      <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+        <source src="assets/hero.mp4" type="video/mp4" />
+      </video>
+    -->
+    <img class="hero-video" src="assets/hero.svg" alt="Hero" />
+    <div class="hero-overlay">
+      <h1>FW26 COLLECTION</h1>
+      <a href="#products" class="hero-btn">SHOP NOW</a>
+    </div>
+  </section>
+
+  <!-- Collection toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <button class="view-btn active" aria-label="Grid view">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M3 3h8v8H3V3Zm10 0h8v8h-8V3ZM3 13h8v8H3v-8Zm10 0h8v8h-8v-8Z"/></svg>
+      </button>
+      <button class="view-btn" aria-label="List view">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z"/></svg>
+      </button>
+    </div>
+    <span class="toolbar-title">BOTTOMS</span>
+    <div class="toolbar-right">
+      <button class="filter-btn">FILTER</button>
+    </div>
+  </div>
+
+  <!-- Product grid -->
+  <main id="products" class="grid"></main>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>FREQUENTLY ASKED QUESTIONS</h2>
+    <div class="faq-item">
+      <button class="faq-q">What is your international shipping policy? <span>+</span></button>
+      <div class="faq-a">We ship worldwide. Orders over $150 qualify for free standard shipping. Most orders are processed within 1–2 business days.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I return or exchange an item once it has been shipped? <span>+</span></button>
+      <div class="faq-a">Yes. We accept returns and exchanges within 30 days of delivery, provided items are unworn and in original packaging.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I find the right size? <span>+</span></button>
+      <div class="faq-a">Each product page includes a detailed size guide. If you're between sizes, we recommend sizing down for a fitted look.</div>
+    </div>
+  </section>
+
+  <!-- Category showcase -->
+  <section class="categories">
+    <a class="cat" href="#"><img src="assets/cat-pants.svg" alt="Pants" /><span>PANTS</span></a>
+    <a class="cat" href="#"><img src="assets/cat-tanks.svg" alt="Tank Tops" /><span>TANK TOPS</span></a>
+    <a class="cat" href="#"><img src="assets/cat-tshirts.svg" alt="T-Shirts" /><span>T-SHIRTS</span></a>
+    <a class="cat" href="#"><img src="assets/cat-hoodies.svg" alt="Hoodies" /><span>HOODIES</span></a>
+    <a class="cat" href="#"><img src="assets/cat-jackets.svg" alt="Jackets" /><span>JACKETS</span></a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">GITHESHE</div>
+    <div class="footer-col">
+      <h4>SHOP</h4>
+      <a href="#">About The Brand</a>
+      <a href="#">Contact & Support</a>
+      <a href="#">Shipping Policy</a>
+      <a href="#">Returns</a>
+      <a href="#">Size Guide</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW &amp; SUBSCRIBE</h4>
+      <a href="#">Subscribe</a>
+    </div>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">◎</a>
+      <a href="#" aria-label="TikTok">♪</a>
+      <a href="#" aria-label="YouTube">▶</a>
+    </div>
+    <div class="footer-bottom">© 2026 THE HYPER STORE</div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

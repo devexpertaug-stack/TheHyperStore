@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#000"/>
+  <g opacity="0.4">
+    <circle cx="400" cy="450" r="300" fill="#333">
+      <animate attributeName="cx" values="400;1200;400" dur="12s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1100" cy="400" r="260" fill="#1f1f1f">
+      <animate attributeName="cy" values="400;500;400" dur="9s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <text x="50%" y="48%" fill="#fff" font-family="Oswald, Arial, sans-serif" font-size="90"
+        font-weight="700" letter-spacing="6" text-anchor="middle">FW26 COLLECTION</text>
+  <text x="50%" y="56%" fill="#aaa" font-family="Inter, Arial, sans-serif" font-size="24"
+        text-anchor="middle">replace with your own video / media</text>
+</svg>
