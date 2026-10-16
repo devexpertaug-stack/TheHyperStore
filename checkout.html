@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — The Hyper Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="announce"><span>FREE WORLDWIDE SHIPPING ON ORDERS OVER $150</span></div>
+
+  <header class="navbar">
+    <nav class="nav-left"><a href="index.html">CONTINUE SHOPPING</a></nav>
+    <a href="index.html" class="logo">GITHESHE</a>
+    <div class="nav-right">
+      <a href="account.html" class="icon-btn account-link" aria-label="Account"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Z"/></svg></a>
+      <a href="cart.html" class="icon-btn cart-link" aria-label="Cart"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 4h-2L3 6v2h2l3.6 7.6-1.3 2.4c-.2.3-.3.7-.3 1 0 1.1.9 2 2 2h12v-2H9.4c-.1 0-.2-.1-.2-.2l1-1.8h7.5c.7 0 1.4-.4 1.7-1l3.6-6.6-1.7-.9-3.6 6.5H10L6.2 6H21V4H7Z"/></svg><span class="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <div class="content-page" style="max-width:600px;">
+    <h1>CHECKOUT</h1>
+
+    <div id="not-logged-in" style="display:none" class="login-prompt">
+      You must <a href="account.html">sign in</a> before placing an order. Your cart is saved.
+    </div>
+
+    <div id="checkout-form-wrap" style="display:none">
+      <div id="order-summary" style="margin-bottom:24px;"></div>
+
+      <form class="auth-form" id="checkout-form">
+        <input type="text" id="ship-name" placeholder="Full name" required />
+        <input type="tel" id="ship-phone" placeholder="Phone number" required />
+        <input type="text" id="ship-address" placeholder="Street address" required />
+        <div class="form-row">
+          <input type="text" id="ship-city" placeholder="City" required />
+          <input type="text" id="ship-postal" placeholder="Postal code" required />
+        </div>
+        <input type="text" id="ship-country" placeholder="Country" required />
+        <button type="submit">PLACE ORDER</button>
+      </form>
+      <div class="auth-msg" id="checkout-msg"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">GITHESHE</div>
+    <div class="footer-bottom">© 2026 THE HYPER STORE</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>
