@@ -74,7 +74,22 @@ ever sees their own orders.
 - **Product pages**: real star-rating reviews, pulled live from Supabase,
   with a submission form shown to any signed-in customer.
 
-## 6. Optional next steps
+## 6. Deploying on Cloudflare Pages
+
+This is a plain static site (no build step), so Cloudflare Pages should be
+configured as:
+
+- **Production branch:** `main`
+- **Build command:** (leave empty)
+- **Build output directory:** `/` (project root)
+- **Root directory:** `/` (project root)
+
+Make sure the Pages project's **Source** is set to **Git** and connected to
+this GitHub repo — if it was created via "Direct Upload" instead, pushes to
+GitHub won't trigger new deployments automatically, and pages like
+`admin.html` or `account.html` may 404 if an older upload is still live.
+
+## 7. Optional next steps
 
 - Add real product photos: upload to Supabase **Storage** (create a public
   bucket) and paste the public URL into the product's "Image URL" field in
