@@ -9,128 +9,101 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-
-  <header class="navbar">
+<body class="admin-body">
+  <header class="navbar admin-navbar">
     <nav class="nav-left"><a href="index.html">VIEW STORE</a></nav>
-    <a href="admin.html" class="logo" style="font-size:18px;">ADMIN</a>
-    <div class="nav-right">
-      <button class="btn btn-outline" id="admin-signout" style="display:none;">SIGN OUT</button>
-    </div>
+    <a href="admin.html" class="logo admin-logo">THS <span>ADMIN</span></a>
+    <div class="nav-right"><button class="btn btn-outline" id="admin-signout" style="display:none;">SIGN OUT</button></div>
   </header>
 
-  <!-- Admin login gate -->
-  <div id="admin-login-gate" class="auth-page" style="display:none">
-    <h1>ADMIN SIGN IN</h1>
-    <p class="login-prompt" style="margin-bottom:16px;">This area requires an administrator account. Sign in below.</p>
+  <div id="admin-login-gate" class="auth-page admin-login" style="display:none">
+    <div class="admin-eyebrow">THE HYPER STORE / ADMIN</div>
+    <h1>Welcome back.</h1>
+    <p class="login-prompt">Sign in with your administrator account to manage the store.</p>
     <form class="auth-form" id="admin-login-form">
-      <input type="email" id="admin-email" placeholder="Admin email" required />
-      <input type="password" id="admin-password" placeholder="Password" required />
-      <button type="submit">SIGN IN</button>
+      <label for="admin-email">Email</label><input type="email" id="admin-email" placeholder="Admin email" required autocomplete="username" />
+      <label for="admin-password">Password</label><input type="password" id="admin-password" placeholder="Password" required autocomplete="current-password" />
+      <button type="submit">SIGN IN TO DASHBOARD</button>
     </form>
-    <div class="auth-msg" id="admin-login-msg"></div>
-    <p class="login-prompt" style="margin-top:16px;">
-      Not an admin yet? Create a normal account on the <a href="account.html">account page</a> first, then
-      in Supabase Table Editor set your <code>profiles.role</code> to <code>admin</code>. See SETUP.md.
-    </p>
+    <div class="auth-msg" id="admin-login-msg" role="status"></div>
+    <p class="login-prompt" style="margin-top:16px;">To grant admin access, set <code>profiles.role</code> to <code>admin</code> in Supabase.</p>
   </div>
 
-  <!-- Not an admin (logged in but wrong role) -->
-  <div id="admin-forbidden" class="auth-page" style="display:none">
-    <h1>ACCESS DENIED</h1>
-    <p class="login-prompt">Your account does not have admin access. Ask a store administrator to grant it, or <a href="account.html">go to your account</a>.</p>
+  <div id="admin-forbidden" class="auth-page admin-login" style="display:none">
+    <h1>Access denied</h1><p class="login-prompt">This account does not have administrator access. Contact the store administrator.</p>
   </div>
 
-  <!-- Dashboard -->
-  <div id="admin-dashboard" class="content-page" style="max-width:1100px;display:none">
-    <h1>DASHBOARD</h1>
-
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-tab="insights">INSIGHTS</button>
-      <button class="admin-tab" data-tab="products">PRODUCTS & INVENTORY</button>
-      <button class="admin-tab" data-tab="orders">ORDERS</button>
-      <button class="admin-tab" data-tab="reviews">REVIEWS</button>
+  <main id="admin-dashboard" class="content-page admin-shell" style="display:none">
+    <div class="admin-page-heading">
+      <div><div class="admin-eyebrow">STORE MANAGEMENT</div><h1>Overview</h1><p>Manage products, customers, orders and loyalty credits.</p></div>
+      <a href="index.html" class="btn admin-view-store">VIEW LIVE STORE ↗</a>
+    </div>
+    <div class="admin-tabs" role="tablist" aria-label="Admin sections">
+      <button class="admin-tab active" data-tab="insights" role="tab" aria-selected="true">Overview</button>
+      <button class="admin-tab" data-tab="products" role="tab" aria-selected="false">Products &amp; Inventory</button>
+      <button class="admin-tab" data-tab="customers" role="tab" aria-selected="false">Customers &amp; Coins</button>
+      <button class="admin-tab" data-tab="orders" role="tab" aria-selected="false">Orders</button>
+      <button class="admin-tab" data-tab="reviews" role="tab" aria-selected="false">Reviews</button>
     </div>
 
-    <!-- Insights -->
     <section class="admin-section active" id="tab-insights">
       <div class="stat-cards">
-        <div class="stat-card"><div class="num" id="stat-revenue">$0</div><div class="label">TOTAL REVENUE</div></div>
-        <div class="stat-card"><div class="num" id="stat-orders">0</div><div class="label">TOTAL ORDERS</div></div>
-        <div class="stat-card"><div class="num" id="stat-customers">0</div><div class="label">CUSTOMERS</div></div>
-        <div class="stat-card"><div class="num" id="stat-lowstock">0</div><div class="label">LOW STOCK ITEMS</div></div>
+        <div class="stat-card"><div class="stat-icon">₹</div><div class="num" id="stat-revenue">₹0</div><div class="label">TOTAL REVENUE</div></div>
+        <div class="stat-card"><div class="stat-icon">↗</div><div class="num" id="stat-orders">0</div><div class="label">TOTAL ORDERS</div></div>
+        <div class="stat-card"><div class="stat-icon">♙</div><div class="num" id="stat-customers">0</div><div class="label">CUSTOMERS</div></div>
+        <div class="stat-card"><div class="stat-icon">!</div><div class="num" id="stat-lowstock">0</div><div class="label">LOW STOCK ITEMS</div></div>
       </div>
-      <h2 style="font-size:12px;letter-spacing:1.5px;margin-bottom:12px;">TOP SELLING PRODUCTS</h2>
-      <table class="data-table" id="top-products-table">
-        <thead><tr><th>Product</th><th>Units Sold</th><th>Revenue</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      <h2 style="font-size:12px;letter-spacing:1.5px;margin:28px 0 12px;">RECENT ORDERS</h2>
-      <table class="data-table" id="recent-orders-table">
-        <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
-        <tbody></tbody>
-      </table>
+      <div class="admin-panel">
+        <div class="panel-heading"><div><h2>Top-selling products</h2><p>Ranked by units sold</p></div></div>
+        <div class="table-wrap"><table class="data-table" id="top-products-table"><thead><tr><th>Product</th><th>Units sold</th><th>Revenue</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div class="admin-panel">
+        <div class="panel-heading"><div><h2>Recent orders</h2><p>Latest customer activity</p></div><button class="text-action" data-go-tab="orders">View all →</button></div>
+        <div class="table-wrap"><table class="data-table" id="recent-orders-table"><thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th></tr></thead><tbody></tbody></table></div>
+      </div>
     </section>
 
-    <!-- Products & Inventory -->
     <section class="admin-section" id="tab-products">
-      <button class="btn" id="new-product-btn" style="margin-bottom:16px;">+ ADD NEW PRODUCT</button>
-
-      <div id="product-form-wrap" style="display:none;border:1px solid var(--line);padding:18px;margin-bottom:20px;">
-        <h3 style="font-size:12px;letter-spacing:1px;margin-bottom:14px;" id="product-form-title">ADD PRODUCT</h3>
+      <div class="panel-heading"><div><h2>Products &amp; inventory</h2><p>Keep product information and availability up to date.</p></div><button class="btn" id="new-product-btn">＋ ADD PRODUCT</button></div>
+      <div id="product-form-wrap" class="admin-panel product-form-panel" style="display:none">
+        <h3 id="product-form-title">Add product</h3>
         <form class="auth-form" id="product-form">
           <input type="hidden" id="pf-id" />
-          <div class="form-row">
-            <input type="text" id="pf-name" placeholder="Product name" required />
-            <input type="text" id="pf-slug" placeholder="URL slug (e.g. my-product)" required />
-          </div>
-          <textarea id="pf-description" placeholder="Description" style="min-height:60px;padding:11px;border:1px solid var(--line);font-family:inherit;font-size:13px;"></textarea>
-          <div class="form-row-3">
-            <input type="number" id="pf-price" placeholder="Price" step="0.01" min="0" required />
-            <input type="number" id="pf-oldprice" placeholder="Old price (optional)" step="0.01" min="0" />
-            <input type="number" id="pf-stock" placeholder="Stock quantity" min="0" required />
-          </div>
-          <div class="form-row">
-            <input type="text" id="pf-category" placeholder="Category" />
-            <input type="text" id="pf-badge" placeholder="Badge (e.g. SALE 30%)" />
-          </div>
-          <input type="text" id="pf-image" placeholder="Image URL (e.g. assets/p1.svg)" />
-          <label style="font-size:11px;"><input type="checkbox" id="pf-active" checked /> Active (visible on store)</label>
-          <div style="display:flex;gap:10px;">
-            <button type="submit">SAVE PRODUCT</button>
-            <button type="button" class="btn-outline" id="cancel-product-form" style="background:#fff;color:#111;border:1.5px solid #111;">CANCEL</button>
-          </div>
-        </form>
-        <div class="auth-msg" id="product-form-msg"></div>
+          <div class="form-row"><input type="text" id="pf-name" placeholder="Product name" required /><input type="text" id="pf-slug" placeholder="URL slug (e.g. relaxed-tee)" required /></div>
+          <textarea id="pf-description" placeholder="Product description"></textarea>
+          <div class="form-row-3"><input type="number" id="pf-price" placeholder="Price (₹)" step="0.01" min="0" required /><input type="number" id="pf-oldprice" placeholder="Compare-at price (optional)" step="0.01" min="0" /><input type="number" id="pf-stock" placeholder="Stock quantity" min="0" step="1" required /></div>
+          <div class="form-row"><input type="text" id="pf-category" placeholder="Category" /><input type="text" id="pf-badge" placeholder="Badge (e.g. BESTSELLER)" /></div>
+          <input type="text" id="pf-image" placeholder="Product image URL" />
+          <label class="checkbox-label"><input type="checkbox" id="pf-active" checked /> Visible in store</label>
+          <div class="form-actions"><button type="submit">SAVE PRODUCT</button><button type="button" class="btn btn-outline" id="cancel-product-form">CANCEL</button></div>
+        </form><div class="auth-msg" id="product-form-msg" role="status"></div>
       </div>
-
-      <table class="data-table" id="products-table">
-        <thead><tr><th>Name</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody></tbody>
-      </table>
+      <div class="admin-panel table-wrap"><table class="data-table" id="products-table"><thead><tr><th>Name</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
     </section>
 
-    <!-- Orders -->
+    <section class="admin-section" id="tab-customers">
+      <div class="section-heading">
+        <div><h2>Customers &amp; Hype Coins</h2><p>Search customers and manage their loyalty coin balances.</p></div>
+        <button class="btn btn-outline" id="refresh-customers">REFRESH</button>
+      </div>
+      <div class="customer-tools"><input id="customer-search" type="search" placeholder="Search by name or email…" aria-label="Search customers" /></div>
+      <div id="coin-editor-slot"></div>
+      <div class="admin-panel table-wrap"><table class="data-table" id="customers-table">
+        <thead><tr><th>Customer</th><th>Email</th><th>Orders</th><th>Total spent</th><th>Hype Coins</th><th>Actions</th></tr></thead>
+        <tbody><tr><td colspan="6" class="empty-cell">Customers will appear here.</td></tr></tbody>
+      </table></div>
+      <div class="auth-msg" id="customer-msg" role="status"></div>
+    </section>
+
     <section class="admin-section" id="tab-orders">
-      <table class="data-table" id="orders-table">
-        <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
-        <tbody></tbody>
-      </table>
+      <div class="admin-panel"><div class="panel-heading"><div><h2>Orders</h2><p>Review fulfilment and update order status.</p></div></div><div class="table-wrap"><table class="data-table" id="orders-table"><thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
     </section>
-
-    <!-- Reviews -->
     <section class="admin-section" id="tab-reviews">
-      <table class="data-table" id="reviews-table">
-        <thead><tr><th>Product</th><th>Author</th><th>Rating</th><th>Comment</th><th>Date</th><th>Actions</th></tr></thead>
-        <tbody></tbody>
-      </table>
+      <div class="admin-panel"><div class="panel-heading"><div><h2>Customer reviews</h2><p>Moderate reviews on your product pages.</p></div></div><div class="table-wrap"><table class="data-table" id="reviews-table"><thead><tr><th>Product</th><th>Author</th><th>Rating</th><th>Comment</th><th>Date</th><th>Actions</th></tr></thead><tbody></tbody></table></div></div>
     </section>
-  </div>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/supabase-client.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="admin.js"></script>
+  <script src="js/config.js"></script><script src="js/supabase-client.js"></script><script src="js/auth.js"></script><script src="admin.js"></script>
 </body>
 </html>
